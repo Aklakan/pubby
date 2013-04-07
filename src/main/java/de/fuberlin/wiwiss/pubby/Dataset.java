@@ -95,14 +95,18 @@ public class Dataset {
 		}
 		if (config.hasProperty(CONF.sparqlEndpoint)) {
 			String endpointURL = config.getProperty(CONF.sparqlEndpoint).getResource().getURI();
-			String graphName = config.hasProperty(CONF.sparqlDefaultGraph)
-								? config.getProperty(CONF.sparqlDefaultGraph).getResource().getURI()
-								: null;
-			dataSource = new RemoteSPARQLDataSource(endpointURL, graphName);
-			if (config.hasProperty(CONF.contentType)) {
-				((RemoteSPARQLDataSource) dataSource).setContentType(
-						config.getProperty(CONF.contentType).getString());
-			}
+
+			String defaultGraph = config.hasProperty(CONF.sparqlDefaultGraph)
+					? config.getProperty(CONF.sparqlDefaultGraph).getResource().getURI()
+					: null;
+
+			DataSource tmpDataSource = DataSourceRegistry.getInstance().get(endpointURL);
+			if(tmpDataSource == null) {
+				tmpDataSource = new RemoteSPARQLDataSource(endpointURL, defaultGraph);
+			}			
+			
+			dataSource = tmpDataSource;
+					
 		} else {
 			Model data = ModelFactory.createDefaultModel();
 			StmtIterator it = config.listProperties(CONF.loadRDF);
