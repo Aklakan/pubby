@@ -4,8 +4,8 @@
 <!-- sparqlify-pubby integration project -->
 
 	<groupId>de.fuberlin.wiwiss</groupId>
-	<artifactId >pubby</artifactId>
-	<version>0.4-1-SNAPSHOT</version>
+	<artifactId>pubby</artifactId>
+	<version>0.4-1</version>
 	<packaging>war</packaging>
 
 	<name>Pubby Linked Data Frontend</name>
@@ -13,6 +13,7 @@
 
   <scm>
 	<connection>scm:git:git@github.com:Aklakan/pubby.git</connection>
+    <tag>pubby-0.4-1</tag>
   </scm>
 
   <developers>
