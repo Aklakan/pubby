@@ -1,6 +1,6 @@
 package de.fuberlin.wiwiss.pubby;
 
-import com.hp.hpl.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Property;
 
 /**
  * The hypermedia interface to a specific resource managed by the server.
